@@ -1,5 +1,6 @@
 [workspace]
 members = [
-  "keta-core"
+  "keta-core",
+  "keta-crypto",
 
 ]

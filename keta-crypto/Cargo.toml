@@ -1,13 +1,13 @@
 [package]
-name = "keta-core"
+name = "keta-crypto"
 version = "0.1.0"
 edition = "2018"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-keta-crypto = { path = "../keta-crypto" }
 ed25519-dalek = { version = "1.0.3", package = "votate-ed25519-dalek" }
 hex = "0.4.3"
-serde = { version = "1.0.130", features = ["derive"] }
+rand = "0.8.4"
+serde = "1.0.130"
 thiserror = "1.0.29"
