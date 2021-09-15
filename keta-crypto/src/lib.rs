@@ -1,5 +1,8 @@
+mod hash;
 mod keys;
 mod signature;
+
+pub use hash::Hash;
 
 pub use signature::Signature;
 pub use signature::Error as SignatureError;
