@@ -2,5 +2,6 @@
 members = [
   "keta-core",
   "keta-crypto",
+  "keta-rpc",
 
 ]
