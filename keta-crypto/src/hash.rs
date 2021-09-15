@@ -21,6 +21,13 @@ impl Hash {
     pub fn as_bytes(&self) -> &[u8; HASH_SIZE] {
         &self.0
     }
+
+    pub fn new_with_nonce(value: impl AsRef<[u8]>, nonce: impl AsRef<[u8]>) -> Self {
+        let mut sha3 = Sha3::v256();
+        sha3.update(value.as_ref());
+        sha3.update(nonce.as_ref());
+        Hash::from(sha3)
+    }
 }
 
 use std::convert::TryInto;
@@ -86,7 +93,7 @@ impl<'de> serde::de::Deserialize<'de> for Hash {
     }
 }
 
-use tiny_keccak::Hasher;
+use tiny_keccak::{Hasher, Sha3};
 
 impl From<tiny_keccak::Sha3> for Hash {
     fn from(sha3: tiny_keccak::Sha3) -> Self {
