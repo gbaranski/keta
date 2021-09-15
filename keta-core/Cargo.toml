@@ -7,7 +7,8 @@ edition = "2018"
 
 [dependencies]
 keta-crypto = { path = "../keta-crypto" }
-ed25519-dalek = { version = "1.0.3", package = "votate-ed25519-dalek" }
 hex = "0.4.3"
 serde = { version = "1.0.130", features = ["derive"] }
 thiserror = "1.0.29"
+chrono = { version = "0.4.19", features = ["serde"] }
+bincode = "1.3.3"
