@@ -2,9 +2,9 @@
 members = [
   "keta-core",
   "keta-crypto",
-  "keta-rpc",
   "keta-miner",
   "keta-node-db",
+  "keta-node-rpc",
   "keta-node",
 
 ]

@@ -1,7 +1,6 @@
 mod cli;
+mod rpc;
 mod world;
-
-use world::World;
 
 const LOG_ENVIRONMENT_VARIABLE: &str = "KETA_LOG";
 
@@ -9,6 +8,7 @@ fn init_logging() {
     use std::env::VarError;
     use std::str::FromStr;
     use tracing_subscriber::EnvFilter;
+
     let env_filter = match std::env::var(LOG_ENVIRONMENT_VARIABLE) {
         Ok(env) => env,
         Err(VarError::NotPresent) => "info".to_string(),
@@ -28,10 +28,14 @@ fn init_logging() {
 
 #[tokio::main]
 async fn main() -> Result<(), anyhow::Error> {
+    use world::World;
+
     init_logging();
     let args = cli::parse_args();
     tracing::trace!("args: {:?}", args);
     let database = keta_node_db::Database::new(args.database)?;
     let world = World::new(database)?;
-    loop {}
+    let rpc_server = rpc::Server::new(world);
+    rpc_server.run(&args.rpc_address).await?;
+    Ok(())
 }
