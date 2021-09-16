@@ -1,6 +1,6 @@
+use keta_crypto::PublicKey;
 use serde::Deserialize;
 use serde::Serialize;
-use keta_crypto::PublicKey;
 
 pub type Address = PublicKey;
 

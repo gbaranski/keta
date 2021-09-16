@@ -12,3 +12,7 @@ rand = "0.8.4"
 serde = "1.0.130"
 thiserror = "1.0.29"
 tiny-keccak = { version = "2.0.2", features = ["sha3"] }
+sled = { version = "0.34.7", optional = true }
+
+[features]
+sled-types = ["sled"]

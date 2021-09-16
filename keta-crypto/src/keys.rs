@@ -1,6 +1,6 @@
 use crate::Signature;
-use std::convert::TryInto;
 use std::convert::TryFrom;
+use std::convert::TryInto;
 
 #[derive(Debug, thiserror::Error)]
 pub enum Error {
