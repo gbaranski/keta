@@ -36,6 +36,7 @@ async fn main() -> Result<(), anyhow::Error> {
     let database = keta_node_db::Database::new(args.database)?;
     let world = World::new(database)?;
     let rpc_server = rpc::Server::new(world);
+    tracing::info!("Start RPC-Server at {}", &args.rpc_address);
     rpc_server.run(&args.rpc_address).await?;
     Ok(())
 }
