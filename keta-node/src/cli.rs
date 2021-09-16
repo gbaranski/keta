@@ -9,6 +9,7 @@ fn default_database_path() -> std::path::PathBuf {
     base_directories().get_data_home().join("database")
 }
 
+#[derive(Debug)]
 pub struct Args {
     pub database: std::path::PathBuf,
 }
