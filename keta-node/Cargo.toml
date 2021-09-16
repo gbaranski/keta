@@ -1,0 +1,13 @@
+[package]
+name = "keta-node"
+version = "0.1.0"
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+keta-core = { path = "../keta-core" }
+keta-rpc = { path = "../keta-rpc" }
+keta-miner = { path = "../keta-miner" }
+tokio = { version = "1.11.0", features = ["rt-multi-thread", "macros"] }
+anyhow = "1.0.44"
