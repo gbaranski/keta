@@ -1,22 +1,21 @@
-use keta_crypto::Hash;
 use crate::transaction::SignedTransaction;
 use chrono::DateTime;
 use chrono::Utc;
-use serde::Serialize;
+use keta_crypto::Hash;
+use keta_crypto::Nonce;
 use serde::Deserialize;
+use serde::Serialize;
 
 // #[cfg(feature = "sled")]
 // impl std::convert::TryFrom<sled::IVec> for BlockIndex {
 //     type Error = BlockIndexError;
-// 
+//
 //     fn try_from(value: sled::IVec) -> Result<Self, Self::Error> {
 //         let bytes: &[u8] = value.as_ref();
 //         let bytes: [u8; 8] = std::convert::TryInto::try_into(bytes)?;
 //         Ok(Self(bytes))
 //     }
 // }
-
-pub type Nonce = u64;
 
 #[derive(Clone, PartialEq, Eq, PartialOrd, Ord)]
 pub struct BlockIndex([u8; 8]);
@@ -161,7 +160,7 @@ impl Block {
 
     pub fn hash_with_nonce(&self, nonce: Nonce) -> Hash {
         let serialized = bincode::serialize(self).unwrap();
-        keta_crypto::Hash::new_with_nonce(serialized, nonce.to_be_bytes())
+        keta_crypto::Hash::new_with_nonce(serialized, nonce)
     }
 }
 

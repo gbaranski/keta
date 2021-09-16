@@ -3,14 +3,15 @@ mod keys;
 mod signature;
 
 pub use hash::Hash;
+pub use hash::Nonce;
 
-pub use signature::Signature;
 pub use signature::Error as SignatureError;
+pub use signature::Signature;
 
-pub use keys::PublicKey;
-pub use keys::SecretKey;
 pub use keys::Error as PublicKeyError;
 pub use keys::Error as SecretKeyError;
+pub use keys::PublicKey;
+pub use keys::SecretKey;
 
 #[derive(Clone, PartialEq, Eq)]
 pub struct Keypair {

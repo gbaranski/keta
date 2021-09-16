@@ -1,3 +1,5 @@
+pub type Nonce = u64;
+
 const HASH_SIZE: usize = 32;
 
 #[derive(Clone, PartialEq, Eq)]
@@ -22,10 +24,10 @@ impl Hash {
         &self.0
     }
 
-    pub fn new_with_nonce(value: impl AsRef<[u8]>, nonce: impl AsRef<[u8]>) -> Self {
+    pub fn new_with_nonce(value: impl AsRef<[u8]>, nonce: Nonce) -> Self {
         let mut sha3 = Sha3::v256();
         sha3.update(value.as_ref());
-        sha3.update(nonce.as_ref());
+        sha3.update(&nonce.to_be_bytes());
         Hash::from(sha3)
     }
 }

@@ -3,5 +3,7 @@ members = [
   "keta-core",
   "keta-crypto",
   "keta-rpc",
+  "keta-miner",
+  "keta-node",
 
 ]
