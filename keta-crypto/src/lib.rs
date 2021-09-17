@@ -13,7 +13,7 @@ pub use keys::Error as SecretKeyError;
 pub use keys::PublicKey;
 pub use keys::SecretKey;
 
-#[derive(Clone, PartialEq, Eq)]
+#[derive(Debug, Clone, PartialEq, Eq)]
 pub struct Keypair {
     pub public: PublicKey,
     pub secret: SecretKey,

@@ -23,13 +23,10 @@ impl Signature {
     pub fn from_bytes(bytes: impl AsRef<[u8]>) -> Result<Self, Error> {
         let bytes_length = bytes.as_ref().len();
         let bytes: [u8; SIGNATURE_SIZE] =
-            bytes
-                .as_ref()
-                .try_into()
-                .map_err(|_| Error::InvalidSize {
-                    expected: &SIGNATURE_SIZE,
-                    received: bytes_length,
-                })?;
+            bytes.as_ref().try_into().map_err(|_| Error::InvalidSize {
+                expected: &SIGNATURE_SIZE,
+                received: bytes_length,
+            })?;
 
         Ok(Self(bytes))
     }

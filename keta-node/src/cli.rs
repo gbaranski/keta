@@ -30,7 +30,7 @@ pub fn parse_args() -> Args {
         .bin_name(clap::crate_name!())
         .version(clap::crate_version!())
         .author(clap::crate_authors!())
-        .about("Node implementation of keta")
+        .about("keta node implementation")
         .arg(
             Arg::with_name("database")
                 .long("database")

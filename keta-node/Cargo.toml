@@ -7,7 +7,7 @@ edition = "2018"
 
 [dependencies]
 keta-core = { path = "../keta-core" }
-keta-node-rpc = { path = "../keta-node-rpc", features = ["server-http"] }
+keta-rpc = { path = "../keta-rpc", features = ["server"] }
 keta-miner = { path = "../keta-miner" }
 keta-node-db = { path = "../keta-node-db" }
 tokio = { version = "1.11.0", features = ["rt-multi-thread", "macros"] }

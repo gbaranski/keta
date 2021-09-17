@@ -29,7 +29,7 @@ impl World {
         })
     }
 
-    pub fn generate_block(&self) -> Result<(), Error> {
+    pub fn generate_block(&self) -> Result<HashedBlock, Error> {
         let transactions = self
             .pending_transactions
             .lock()
@@ -43,7 +43,7 @@ impl World {
         let MineResult { hash, nonce } = mine_block(&block);
         let block = HashedBlock { block, hash, nonce };
         self.database.blocks.insert(&block.index, &block)?;
-        Ok(())
+        Ok(block)
     }
 
     pub fn get_balance(&self, address: &Address) -> Result<u64, Error> {
@@ -54,5 +54,13 @@ impl World {
             .map(|account| account.balance)
             .unwrap_or(0);
         Ok(balance)
+    }
+
+    pub fn send_transaction(&self, transaction: SignedTransaction) -> Result<(), Error> {
+        self.pending_transactions
+            .lock()
+            .unwrap()
+            .push_back(transaction);
+        Ok(())
     }
 }

@@ -39,11 +39,8 @@ impl Transaction {
 impl SignedTransaction {
     pub fn verify(&self, key: &PublicKey) -> Result<(), VerifyError> {
         let serialized = bincode::serialize(&self).unwrap();
-        key.verify(
-            &serialized,
-            self.signature.clone(),
-        )
-        .map_err(|_| VerifyError::InvalidSignature)
+        key.verify(&serialized, self.signature.clone())
+            .map_err(|_| VerifyError::InvalidSignature)
     }
 }
 
